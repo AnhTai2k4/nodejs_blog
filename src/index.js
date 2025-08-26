@@ -5,10 +5,17 @@ const path = require('path')
 const app = express()
 const port = 3000
 
+
+
 const route = require('./routes/index.js')
 const db = require('./config/db')
 
+
 db.connect()
+
+//Xuất dữ liệu req.json
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static(path.join(__dirname,'public')))
 
