@@ -24,7 +24,11 @@ app.use(morgan('combined'))
 
 //template engine 
 app.engine('hbs', hbs.engine({
-  extname: '.hbs'
+  extname: '.hbs',
+  //function trong hbs
+  helpers: {
+    sum: (a,b) => a+b
+  }
 }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname,'resources/views'));

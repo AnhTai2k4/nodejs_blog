@@ -27,8 +27,23 @@ class CourseController {
         formData.image = `https://i.ytimg.com/vi/${req.body.videoId}/maxresdefault.jpg`
         const course = new Course(formData)
         course.save()
+        .then(()=>res.redirect('/'))
+        .catch()
 
-        res.send('COURSE SAVED')
+    }
+
+    //[GET] /course/:id/edit
+    edit(req, res, next) {
+        Course.findById(req.params.id).lean()
+        .then(
+           
+            (course ) => {
+                console.log("khoa hoc", course)
+                res.render('courses/edit',{course})}
+
+        )
+        .catch(next)
+        
     }
 
 
